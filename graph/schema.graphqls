@@ -1,0 +1,76 @@
+"""
+A blog post with a title, body, author, and comments.
+"""
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  author: User!
+  comments: [Comment!]!
+}
+
+"""
+A comment on a blog post.
+"""
+type Comment {
+  id: ID!
+  body: String!
+  author: User!
+  post: Post!
+}
+
+"""
+A user who writes posts and comments.
+"""
+type User {
+  id: ID!
+  name: String!
+}
+
+"""
+Root query operations.
+"""
+type Query {
+  """
+  List all blog posts ordered by creation time.
+  """
+  posts: [Post!]!
+
+  """
+  Get a single blog post by ID.
+  """
+  post(id: ID!): Post
+}
+
+"""
+Input for creating a new blog post.
+"""
+input NewPost {
+  title: String!
+  body: String!
+  authorId: String!
+}
+
+"""
+Input for creating a new comment.
+"""
+input NewComment {
+  body: String!
+  authorId: String!
+  postId: String!
+}
+
+"""
+Root mutation operations.
+"""
+type Mutation {
+  """
+  Create a new blog post.
+  """
+  createPost(input: NewPost!): Post!
+
+  """
+  Add a comment to an existing blog post.
+  """
+  createComment(input: NewComment!): Comment!
+}
