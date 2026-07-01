@@ -1,4 +1,4 @@
-# hackernews
+# blogs
 
 GraphQL API built with [gqlgen](https://gqlgen.com) — a code-first Go library for GraphQL servers.
 
